@@ -10,10 +10,10 @@ describe 'Emacs Flow', ->
   [editor, buffer, filePath, editorView] = []
 
   beforeEach ->
-    directory = temp.mkdirSync()
-    atom.project.setPath(directory)
-    atom.workspaceView = new WorkspaceView()
-    atom.workspace = atom.workspaceView.getModel()
+    # directory = temp.mkdirSync()
+    # atom.project.setPath(directory)
+    # atom.workspaceView = new WorkspaceView()
+    # atom.workspace = atom.workspaceView.getModel()
 
     waitsForPromise ->
       atom.packages.activatePackage('emacs-flow')
@@ -21,8 +21,8 @@ describe 'Emacs Flow', ->
     waitsForPromise ->
       atom.packages.activatePackage('language-coffee-script')
 
-    runs ->
-      filePath = path.join(directory, 'emacs-flow.coffee')
+    # runs ->
+      # filePath = path.join(directory, 'emacs-flow.coffee')
 
     waitsForPromise ->
       atom.workspace.open(filePath).then (e) -> editor = e
@@ -41,18 +41,3 @@ describe 'Emacs Flow', ->
 
     it 'removes the command', ->
       expect(helper.hasCommand(editorView, 'emacs-flow:auto-indent')).toBeFalsy()
-
-  describe 'auto-indent', ->
-    it 'auto-indents the row at the current cursor location', ->
-      buffer.setText """
-        foo = ->
-        bar = 5
-      """
-
-      editor.setCursorBufferPosition([1, 0])
-      atom.commands.dispatch(editorView, 'emacs-flow:auto-indent')
-
-      expect(buffer.getText()).toBe """
-        foo = ->
-          bar = 5
-      """
