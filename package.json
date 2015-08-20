@@ -3,7 +3,7 @@
   "main": "./lib/index",
   "version": "0.1.0",
   "description": "Offers Emacs-like indentation functionality",
-  "repository": "https://github.com/lee-dohm/emacs-flow",
+  "repository": "https://github.com/ComputationalPhysics/emacs-flow",
   "license": "MIT",
   "engines": {
     "atom": ">=0.164.0"
